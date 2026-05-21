@@ -1,0 +1,1136 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SYLLASYNC
+
+
+
+Project Documentation v2.0
+
+
+
+
+
+
+
+
+
+
+
+Online Syllabus &amp; Communication Platform
+
+
+
+Web + (potential to extend to Mobile Application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Deadline: 15 June 2025
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Project Overview
+
+
+
+Nowadays, one of the most important ways to control students??education and performance is following the attention system, on time, making assignments, and without limitations and extra difficulties have the possibility to ask the professor about missing topics and other things. 
+
+
+
+Knowing these requirements for ideal performance during the semester in Woosong University can lead to chaos in controlling the schedule, which assignments students have and how to communicate, and when the professor can notice students??messages. 
+
+
+
+
+
+SyllaSync
+
+ is a web and (extensible in the next step) mobile platform connecting professors and students through a structured syllabus, schedule, and communication system. All course information lives in one place ??accessible on a browser and smartphone.
+
+The MVP of SyllaSync is a streamlined web platform designed to centralize course schedules, assignments, and communication between professors and students at Woosong University.
+
+
+
+
+
+
+
+
+
+1.1 Problem Statement
+
+
+
+Students often miss schedule changes, homework deadlines, and lesson notes because information is scattered across emails, group chats, and paper handouts. Professors lack a structured channel to broadcast updates and track student awareness. SyllaSync centralises everything into one platform.
+
+
+
+
+
+1.2 Goals
+
+
+
+
+
+Give professors a single dashboard to manage all course communications
+
+
+
+
+
+Let students view their full academic schedule in a unified calendar
+
+
+
+
+
+Enable per-course messaging between professors and students
+
+
+
+
+
+Deliver real-time notifications for schedule changes and new homework
+
+
+
+
+
+Work seamlessly on both web browsers and mobile devices
+
+
+
+
+
+1.3 Scope ??v2.0 Includes
+
+
+
+
+
+Professor dashboard: post schedule changes, homework, lesson notes, announcements
+
+
+
+
+
+Student dashboard: unified calendar view, homework feed, notes viewer
+
+
+
+
+
+Per-course chat between professors and enrolled students
+
+
+
+
+
+Push notifications for changes and new content
+
+
+
+
+
+Course enrollment via invite code
+
+
+
+
+
+Web (React 18). Extensile to hybrid with Mobile (React Native / Expo) in the next step
+
+
+
+
+
+2. System Display ??UI
+
+
+
+The User Interface consists of three main parts: 
+
+the
+
+ Navigation Shell, the Content Area, and the Chat Panel. All three are shared across web and mobile, with role-appropriate controls shown per user.
+
+
+
+
+
+
+
+
+
+2.1 Main Screens ??Professor
+
+
+
+
+
+Dashboard
+
+
+
+
+
+List of all courses taught this semester
+
+
+
+
+
+Quick-post buttons: homework, note, announcement
+
+
+
+
+
+Upcoming schedule summary widget
+
+
+
+
+
+Unread chat messages badge per course
+
+
+
+
+
+Course Editor
+
+
+
+
+
+Edit course name, description, syllabus PDF
+
+
+
+
+
+Add / edit / cancel lesson slots with room and time
+
+
+
+
+
+Post or edit homework: title, description, due date, optional file
+
+
+
+
+
+Attach rich-text notes to individual lessons
+
+
+
+
+
+Announcements
+
+
+
+
+
+Compose broadcast message to all enrolled students
+
+
+
+
+
+History of past announcements with timestamps
+
+
+
+
+
+Delivery status indicator: sent / delivered
+
+
+
+
+
+Course Chat
+
+
+
+
+
+Threaded real-time message stream per course
+
+
+
+
+
+Professor name always shown with a distinct label
+
+
+
+
+
+Supports text messages and image attachments
+
+
+
+
+
+2.2 Main Screens ??Student
+
+
+
+
+
+Calendar
+
+
+
+
+
+Unified week 
+
+view
+
+ of all enrolled courses
+
+
+
+
+
+Colour-coded by course
+
+
+
+
+
+Tap lesson to see notes, room, and any changes
+
+
+
+
+
+Cancelled lessons shown with strikethrough
+
+
+
+
+
+Homework Feed
+
+
+
+
+
+Chronological list of all assignments across courses
+
+
+
+
+
+Due date with 
+
+colour
+
+ urgency indicator: green / orange / red
+
+
+
+
+
+Tap to view full description and download file
+
+
+
+
+
+Filter by course or due date
+
+
+
+
+
+Course View
+
+
+
+
+
+Syllabus download button
+
+
+
+
+
+Lesson list with attached notes
+
+
+
+
+
+Homework list specific to this course
+
+
+
+
+
+Announcements from professor
+
+
+
+
+
+Course Chat
+
+
+
+
+
+Real-time chat stream for the enrolled course
+
+
+
+
+
+Can read all messages and send own messages
+
+
+
+
+
+Push notification on new professor message
+
+
+
+
+
+2.3 Shared Screens ??Both Roles
+
+
+
+
+
+Login / Register
+
+
+
+
+
+Email + password form
+
+
+
+
+
+Role selector at registration: Student or Professor
+
+
+
+
+
+Password reset via email
+
+
+
+
+
+Profile Settings
+
+
+
+
+
+Edit name and avatar photo
+
+
+
+
+
+Notification preferences toggle
+
+
+
+
+
+Dark / light mode toggle
+
+
+
+
+
+Log out button
+
+
+
+
+
+Notification Centre
+
+
+
+
+
+Inbox of all system notifications
+
+
+
+
+
+Tap to navigate to the relevant screen
+
+
+
+
+
+Mark all as read button
+
+
+
+
+
+
+
+
+
+3. Use Cases
+
+
+
+Each actor is described with their position in the system, what they interact with, and the actions they can perform. Actions map directly to system functions and API endpoints.
+
+
+
+
+
+3.1 Actor 1 ??Professor
+
+
+
+Position: Authenticated user with role = professor.
+
+
+
+Entry point: Professor dashboard.
+
+
+
+
+
+Actions:
+
+
+
+
+
+Opens professor dashboard
+
+
+
+
+
+Creates and edits a course
+
+
+
+
+
+Adds lesson to schedule
+
+
+
+
+
+Reschedules or cancels a lesson
+
+
+
+
+
+Posts homework with due date
+
+
+
+
+
+Attaches file to homework (PDF or image, max 10 MB)
+
+
+
+
+
+Writes lesson notes (rich text)
+
+
+
+
+
+Sends course announcement to all enrolled students
+
+
+
+
+
+Opens and participates in course chat
+
+
+
+
+
+Uploads and updates syllabus PDF
+
+
+
+
+
+Views list of enrolled students
+
+
+
+
+
+Manages profile settings
+
+
+
+
+
+3.2 Actor 2 ??Student
+
+
+
+Position: Authenticated user with role = student.
+
+
+
+Entry point: Calendar view or homework feed.
+
+
+
+
+
+Actions:
+
+
+
+
+
+Opens and navigates the unified calendar
+
+
+
+
+
+Filters calendar by course or week
+
+
+
+
+
+Taps a lesson to see notes, room, and schedule changes
+
+
+
+
+
+Views the homework feed across all courses
+
+
+
+
+
+Taps homework to read full description and download file
+
+
+
+
+
+Reads lesson notes attached to lessons
+
+
+
+
+
+Reads course announcements from professor
+
+
+
+
+
+Opens and participates in course chat
+
+
+
+
+
+Views and downloads course syllabus
+
+
+
+
+
+Joins a course via professor invite code
+
+
+
+
+
+Manages notification preferences
+
+
+
+
+
+3.3 Actor 3 ??System (Automated)
+
+
+
+Position: Backend services ??no direct human interaction.
+
+
+
+Triggered by: Professor actions or scheduled events.
+
+
+
+
+
+Actions:
+
+
+
+
+
+Sends push notification when professor posts a schedule change
+
+
+
+
+
+Sends push notification when new homework is published
+
+
+
+
+
+Broadcasts chat messages via WebSocket to all participants
+
+
+
+
+
+Validates JWT token on every authenticated request
+
+
+
+
+
+Stores uploaded files and returns CDN URLs
+
+
+
+
+
+Returns paginated message history on demand
+
+
+
+
+
+3.4 System Administrator 
+
+
+
+
+
+Actions:
+
+
+
+
+
+Acting as a general Web/App administrator
+
+
+
+
+
+Manages the login and permission management
+
+
+
+
+
+Handling of errors and error messages
+
+
+
+
+
+3.5 Key Use Case Flow ??Schedule Change
+
+
+
+The following describes the end-to-end flow when a professor reschedules a lesson:
+
+
+
+
+
+Step 1. Professor opens Course Editor and taps the lesson to reschedule.
+
+
+
+
+
+Step 2. Professor updates date, time, and room, then confirms the change.
+
+
+
+
+
+Step 3. Web/App sends PUT /lessons/:id to the API with the new values.
+
+
+
+
+
+Step 4. Backend updates the database and queues a push notification for all enrolled students.
+
+
+
+
+
+Step 5. Students receive the push notification, open the app, and see the updated calendar. (The Student Calendar reflects the change immediately (via polling or lightweight real-time service).
+
+
+
+
+
+
+
+
+
+4. System Architecture
+
+
+
+
+
+SyllaSync
+
+ uses a standard client?뱒erver architecture with a shared REST API backend serving both web and mobile. Real-time chat is handled via WebSocket (Socket.IO). Hosting will be based on AWS LightSail and LAMP stack in it.
+
+
+
+
+
+4.1 High-Level Layers
+
+
+
+The system is structured as minimized MVP in the first step
+
+
+
+
+
+Frontend &amp; API: Next.js 14/15 (App Router) using Tailwind CSS and 
+
+Lucide
+
+-React icons.
+
+
+
+
+
+ORM: Prisma for type-safe database access.
+
+
+
+
+
+Database: MySQL (Hosted on AWS 
+
+Lightsail
+
+).
+
+
+
+
+
+Authentication: NextAuth.js (Email/Password) with role-based access (Professor/Student).
+
+
+
+
+
+4.2 Data Models (MySQL)
+
+The schema is designed to manage 119+ students across multiple courses efficiently:
+
+
+
+
+
+User: ID, Email, 
+
+PasswordHash
+
+, Name, Role (Professor/Student).
+
+
+
+
+
+Course: ID, Name, 
+
+ProfessorID
+
+, 
+
+InviteCode
+
+, 
+
+SyllabusURL
+
+.
+
+
+
+
+
+Lesson: 
+
+CourseID
+
+, Title, 
+
+StartTime
+
+, 
+
+EndTime
+
+, Room, Notes.
+
+
+
+
+
+Homework: 
+
+CourseID
+
+, Title, Description, 
+
+DueDate
+
+, 
+
+FileURL
+
+.
+
+
+
+
+
+Message: 
+
+CourseID
+
+, 
+
+SenderID
+
+, Content, Timestamp.
+
+
+
+
+
+
+
+
+
+
+
+5. Team Structure &amp; Roles
+
+
+
+
+
+PM: Coordination, documentation, and demo prep.
+
+
+
+
+
+Frontend (F1/F2): Next.js UI for Professor and Student views.
+
+
+
+
+
+Backend (B1/B2): Next.js API Routes, MySQL schema management, and chat logic.
+
+
+
+
+
+
+
+
+
+
+
+6. Requests &amp; Suggestions
+
+
+
+To ensure the successful development of 
+
+SyllaSync
+
+ within the June 15 deadline, the team requests the following support from supervisors, stakeholders, and the university.
+
+
+
+
+
+Request 1 ??Access to Real Course Data for Testing
+
+
+
+Access to sample course schedules, lesson structures, and homework formats from actual university courses will allow the team to validate the calendar and homework feed with realistic data, improving accuracy before the final demo.
+
+
+
+
+
+Request 2 ??Regular Feedback from Supervising Professor
+
+
+
+Biweekly check-ins, or async feedback on progress reports, from the supervising professor will ensure the system's features align with actual teaching workflows and institutional expectations. This prevents late-stage redesigns.
+
+
+
+
+
+Request 3 ??Clarification of Expected Deliverables
+
+
+
+Clear documentation of what the final submission should include ??live demo, code repository, written report, or presentation deck ??will help the team allocate the final two weeks appropriately without last-minute surprises.
+
+
+
+
+
+Request 4 ??Student User Testing Volunteers
+
+
+
+Access to 5??0 student volunteers willing to test the application during Week 9 user acceptance testing will provide realistic usage patterns and surface usability issues that the development team cannot identify internally.
+
+
+
+
+
+Request 5 ??Guidance on Vibe Coding Boundaries
+
+
+
+The team uses AI-assisted (vibe) coding for boilerplate and scaffolding. Clarity on how much AI-generated code is acceptable in the final submission, and whether it should be disclosed, will help the team code responsibly and avoid academic integrity concerns.
+
+
+
+
+
+Request 6 ??Free-Tier Hosting Access or University Server
+
+
+
+Hosting the backend and database on Railway or Render free tier may introduce cold-start latency during the demo. If the university can provide a small server or cloud credits, a more stable and reliable demo experience is possible.
+
+
+
+
+
+6.1 Others:  Risk Flags
+
+
+
+
+
+Chat complexity ??
+
+WebSockets
+
+ are the trickiest piece; start Socket.IO setup earlier to make it ideal
+
+
+
+
+
+Mobile build issues ??updates help, but test on real devices early, not just in week 9
+
+
+
+
+
+API contract drift ??frontend and backend changes must be coordinated;
+
+
+
+Calendar dashboard updating in real time ??calendar must be updated according to new updates and show only real and approved data
+
+
+
+
